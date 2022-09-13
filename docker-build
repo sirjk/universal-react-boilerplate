@@ -6,10 +6,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
 
-RUN apt-get -y install maven
+RUN git clone https://github.com/sirjk/universal-react-boilerplate.git
 
-RUN apt-get -y install openjdk-17-jdk
+WORKDIR universal-react-boilerplate
 
-EXPOSE 8889
+RUN npm install
 
-CMD ["sh", "-c", "mvn -f inputVol/bastimShop/backend package && cp ./inputVol/bastimShop/backend/target/shopBastim.jar ./outputVol/"]
+RUN npm run build:dev
