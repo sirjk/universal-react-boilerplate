@@ -1,0 +1,5 @@
+FROM builder:latest
+
+WORKDIR /universal-react-boilerplate/
+
+RUN npm run test
