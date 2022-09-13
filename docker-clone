@@ -1,5 +1,0 @@
-FROM ubuntu:latest
-
-RUN apt-get -y update && apt-get -y install git
-WORKDIR inputVol
-CMD ["sh", "-c", "git clone https://github.com/cloverfield-tools/universal-react-boilerplate.git"]
