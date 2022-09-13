@@ -7,23 +7,12 @@ pipeline {
     }
 
     stages {
-        stage('Clone'){
-            steps {
-                echo 'Cloning.. And setting up voulumes..'
-                sh 'docker system prune --all --volumes -f'
-                sh 'docker volume create vol-in'
-                sh 'docker volume create vol-out'
-                sh 'docker build -t cloner:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-clone'
-                sh 'docker run --mount source=vol-in,destination=/inputVol cloner:latest'
-            }
-
-        }
-
         stage('Build') {
             steps {
                 echo 'Building..'
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
-                sh 'docker run -d -it -p 8889:8080 --network app_network --mount source=vol-in,destination=/inputVol --mount source=vol-out,destination=/outputVol builder:latest'
+                sh 'docker volume create vol-out'
+                sh 'docker run --mount source=vol-out,destination=/outputVol builder:latest bash -c "cd .. && cp -r /universal-react-boilerplate /outputVol"'
             }
         }
         stage('Test') {
