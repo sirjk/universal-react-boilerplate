@@ -12,8 +12,6 @@ WORKDIR universal-react-boilerplate
 
 RUN pwd 
 
-RUN cd .. && ls
-
 RUN npm install
 
 RUN npm run build:dev
