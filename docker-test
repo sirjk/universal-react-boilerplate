@@ -1,5 +1,5 @@
 FROM builder:latest
 
-WORKDIR /universal-react-boilerplate
+WORKDIR universal-react-boilerplate
 
 RUN npm run test
