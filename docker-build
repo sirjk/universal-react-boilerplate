@@ -18,7 +18,9 @@ RUN npm run build:dev
 
 RUN ls
 
-RUN cd .. && cp -r universal-react-boilerplate outputVol
+WORKDIR /
+
+RUN cp -r universal-react-boilerplate outputVol
 
 RUN ls
 
