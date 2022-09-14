@@ -1,3 +1,5 @@
 FROM builder:latest
 
-RUN cd outputVol && npm run test
+WORKDIR universal-react-boilerplate
+
+RUN npm run test
