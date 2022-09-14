@@ -21,3 +21,7 @@ RUN ls
 RUN cd .. && cp -r universal-react-boilerplate outputVol
 
 RUN ls
+
+WORKDIR outputVol
+
+RUN ls
