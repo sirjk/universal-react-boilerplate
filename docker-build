@@ -20,7 +20,7 @@ RUN ls
 
 WORKDIR /
 
-RUN cp -r universal-react-boilerplate outputVol
+RUN cp -R universal-react-boilerplate outputVol
 
 RUN ls
 
