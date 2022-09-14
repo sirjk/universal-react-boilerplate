@@ -24,11 +24,11 @@ pipeline {
         stage('Deploy') {
             steps {
 		            echo 'Deploying..'
-                sh 'docker build -t deploy:latest . -f /var/jenkins_home/workspace/DevOpsPipeline2/backend/docker-deploy'
+                sh 'docker build -t deploy:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-deploy'
                 sh 'docker run --name deploy-container --mount source=vol-out,destination=/outputVol deploy:latest'
                 sh 'rm -rf artifact'
 		            sh 'mkdir artifact'
-		            sh 'docker cp deploy-container:outputVol/shopBastim.jar ./artifact'
+		            sh 'docker cp deploy-container:outputVol/universal-react-boilerplate.tar.gz ./artifact'
             }
         }
         stage('Publish') {
@@ -36,8 +36,8 @@ pipeline {
 	            	echo 'Publishing..'
                 script{
                     if(params.promote){
-                        sh "mv ./artifact/shopBastim.jar ./artifact/shopBastim-${params.version}.jar"
-                        archiveArtifacts artifacts: "artifact/shopBastim-${params.version}.jar"
+                        sh "mv ./artifact/universal-react-boilerplate.tar.gz ./artifact/universal-react-boilerplate-${params.version}.tar.gz"
+                        archiveArtifacts artifacts: "artifact/universal-react-boilerplate-${params.version}.tar.gz"
                     }
                     else{
                         echo 'Pipeline finished work sucessfully but new version wasn\'t published.'
