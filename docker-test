@@ -2,4 +2,4 @@ FROM builder:latest
 
 WORKDIR /universal-react-boilerplate/
 
-CMD ["sh","-c","npm run test"]
+RUN npm run test
