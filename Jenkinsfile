@@ -18,7 +18,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-		            sh 'docker build -t tester:latest . -f docker-test'
+		            sh 'docker build -t tester:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-test'
+                sh 'docker run --mount source=vol-in,destination=/inputVol --mount source=vol-out,destination=/outputVol tester:latest'
             }
         }
         stage('Deploy') {
