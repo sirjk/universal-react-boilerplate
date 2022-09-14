@@ -14,7 +14,7 @@ pipeline {
                 sh 'docker container prune'
                 sh 'docker volume create vol-out'
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
-                sh 'docker run --mount source=vol-out,destination=/outputVol builder:latest bash -c "cd .. && cp -r ./universal-react-boilerplate ./outputVol"'
+                sh 'docker run --mount source=vol-out,destination=/outputVol builder:latest'
                 sh 'ls'
                 sh 'pwd'
             }
