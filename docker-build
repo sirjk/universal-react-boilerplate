@@ -20,7 +20,9 @@ RUN ls
 
 WORKDIR /
 
-RUN mkdir outputVol/universal-react-boilerplate
+RUN ls
+
+RUN mkdir -p outputVol/universal-react-boilerplate
 
 RUN cp -R universal-react-boilerplate outputVol/universal-react-boilerplate
 
