@@ -4,4 +4,8 @@ RUN pwd
 
 RUN ls
 
+WORKDIR outputVol
+
+RUN ls
+
 RUN tar -czvf universal-react-boilerplate.tar.gz outputVol/universal-react-boilerplate
