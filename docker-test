@@ -2,6 +2,10 @@ FROM builder:latest
 
 RUN ls
 
+WORKDIR /
+
+RUN ls
+
 WORKDIR outputVol
 
 RUN npm run test
