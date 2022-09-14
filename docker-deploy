@@ -1,3 +1,7 @@
 FROM ubuntu:latest
 
+RUN pwd
+
+RUN ls
+
 RUN tar -czvf universal-react-boilerplate.tar.gz universal-react-boilerplate
