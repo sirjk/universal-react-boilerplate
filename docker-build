@@ -18,4 +18,4 @@ RUN npm install
 
 RUN npm run build:dev
 
-RUN cd .. && cp -r ./universal-react-boilerplate ./outputVol/
+RUN cd .. && cp -r /universal-react-boilerplate /outputVol/
