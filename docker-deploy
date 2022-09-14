@@ -1,5 +1,3 @@
 FROM ubuntu:latest
 
-WORKDIR /universal-react-boilerplate/
-
-RUN tar -czvf universal-react-boilerplate.tar.gz universal-react-boilerplate
+RUN tar -czvf universal-react-boilerplate.tar.gz ./universal-react-boilerplate
