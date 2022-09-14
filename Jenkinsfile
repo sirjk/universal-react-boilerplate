@@ -16,7 +16,7 @@ pipeline {
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
                 sh 'docker run --mount source=vol-out,destination=/outputVol builder:latest'
                 sh 'docker volume inspect vol-out'
-                sh 'ls ./outputVol/'
+                sh 'ls /outputVol/'
                 sh 'ls'
                 sh 'pwd'
             }
@@ -32,7 +32,7 @@ pipeline {
             steps {
 		            echo 'Deploying..'
                 sh 'docker volume inspect vol-out'
-                sh 'ls ./outputVol/'
+                sh 'ls /outputVol/'
                 sh 'docker build -t deploy:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-deploy'
                 sh 'docker run --name deploy-container --mount source=vol-out,destination=/outputVol deploy:latest'
                 sh 'rm -rf artifact'
