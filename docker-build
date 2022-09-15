@@ -1,11 +1,5 @@
 FROM node:latest
 
-ENV TZ=Europe/Warsaw
-
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-RUN apt-get update
-
 RUN git clone https://github.com/sirjk/universal-react-boilerplate.git
 
 WORKDIR universal-react-boilerplate
