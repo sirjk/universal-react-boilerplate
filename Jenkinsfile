@@ -10,8 +10,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker system prune --all --volumes -f'
-                sh 'docker volume create --name vol-out'
+                sh 'docker volume rm -f vol-out'
+                sh 'docker volume create vol-out'
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
                 sh 'docker run --name build-container -v vol-out:/outputVol builder:latest'
             }
@@ -20,7 +20,6 @@ pipeline {
             steps {
                 echo 'Testing..'
 		            sh 'docker build -t tester:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-test'
-                //sh 'docker run --mount source=vol-out,destination=/outputVol/ tester:latest'
             }
         }
         stage('Deploy') {
