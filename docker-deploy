@@ -6,4 +6,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
 
-CMD ["sh","-c","ls && cd outputVol && tar -czvf universal-react-boilerplate.tar.gz universal-react-boilerplate && cd universal-react-boilerplate"]
+CMD ["sh","-c","ls && cd outputVol && tar -czvf universal-react-boilerplate.tar.gz universal-react-boilerplate && cd universal-react-boilerplate && npm start"]
