@@ -20,7 +20,6 @@ pipeline {
             steps {
                 echo 'Testing..'
 		            sh 'docker build -t tester:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-test'
-                sh 'docker run --name test-container tester:latest'
             }
         }
         stage('Deploy') {
