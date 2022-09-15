@@ -16,4 +16,4 @@ RUN npm run build:dev
 
 WORKDIR /
 
-CMD ["sh","-c","ls"]
+CMD ["sh","-c","mkdir outputVol/universal-react-boilerplate && cp -r universal-react-boilerplate outputVol/universal-react-boilerplate"]
