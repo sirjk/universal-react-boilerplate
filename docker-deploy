@@ -1,7 +1,9 @@
 FROM ubuntu:latest
 
-RUN pwd
+ENV TZ=Europe/Warsaw
 
-RUN ls
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN tar -czvf universal-react-boilerplate.tar.gz ./outputVol
+RUN apt-get update
+
+CMD ["sh","-c","ls && cd outputVol && tar -czvf universal-react-boilerplate.tar.gz universal-react-boilerplate"]
