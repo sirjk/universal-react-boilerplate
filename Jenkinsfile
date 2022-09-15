@@ -10,10 +10,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                //sh 'docker system prune --all --volumes -f'
-                sh 'docker volume create vol-out'
+                sh 'docker system prune --all --volumes -f'
+                sh 'docker volume create --name VolumeOut'
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
-                sh 'docker run --mount type=volume,src=vol-out,dst=/outputVol/ builder:latest bash -c "cd .. && cp -R universal-react-boilerplate outputVol"'
+                sh 'docker run --name=BuildContainer -v VolumeOut:/outputVol builder:latest'
             }
         }
         stage('Test') {
