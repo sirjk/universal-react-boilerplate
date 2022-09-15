@@ -8,11 +8,7 @@ RUN apt-get update
 
 RUN git clone https://github.com/sirjk/universal-react-boilerplate.git
 
-RUN ls
-
 WORKDIR universal-react-boilerplate
-
-RUN pwd 
 
 RUN npm install
 
@@ -20,6 +16,4 @@ RUN npm run build:dev
 
 WORKDIR /
 
-RUN ls
-
-RUN cp -R universal-react-boilerplate outputVol
+CMD ["sh","-c","ls"]
