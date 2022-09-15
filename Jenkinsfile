@@ -11,26 +11,26 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'docker system prune --all --volumes -f'
-                sh 'docker volume create --name VolumeOut'
+                sh 'docker volume create --name vol-out'
                 sh 'docker build -t builder:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-build'
-                sh 'docker run --name=BuildContainer -v VolumeOut:/outputVol builder:latest'
+                sh 'docker run --name build-container -v vol-out:/outputVol builder:latest'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
 		            sh 'docker build -t tester:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-test'
-                sh 'docker run --mount source=vol-out,destination=/outputVol/ tester:latest'
+                //sh 'docker run --mount source=vol-out,destination=/outputVol/ tester:latest'
             }
         }
         stage('Deploy') {
             steps {
 		            echo 'Deploying..'
                 sh 'docker build -t deploy:latest . -f /var/jenkins_home/workspace/DevOpsPipeline3/docker-deploy'
-                sh 'docker run --name deploy-container --mount source=vol-out,destination=/outputVol deploy:latest'
+                sh 'docker run --name deploy-container -v vol-out:/outputVol deploy:latest'
                 sh 'rm -rf artifact'
 		            sh 'mkdir artifact'
-		            sh 'docker cp deploy-container:outputVol/universal-react-boilerplate.tar.gz ./artifact'
+		            sh 'docker cp deploy-container:/outputVol/universal-react-boilerplate.tar.gz ./artifact'
             }
         }
         stage('Publish') {
